@@ -20,6 +20,9 @@ services:
       - aether-net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      # Required when deploying via docker compose on a swarm node to avoid "tasks." lookup error
+      AGENT_CLUSTER_ADDR: portainer-agent
     restart: always
 
 networks:
