@@ -1,0 +1,18 @@
+name: Deploy Proxy Stack
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, muspelheim]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy
+        run: |
+          chmod +x start.sh
+          ./start.sh
