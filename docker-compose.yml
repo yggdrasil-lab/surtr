@@ -1,29 +1,19 @@
+version: "3.8"
 services:
-  socket-proxy:
-    image: tecnativa/docker-socket-proxy
-    hostname: muspelheim-docker
-    networks:
-      - aether-net
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    environment:
-      CONTAINERS: 1
-      SERVICES: 1
-      TASKS: 1
-      NETWORKS: 1
-      NODES: 1
-    restart: always
-
   portainer-agent:
     image: portainer/agent:latest
-    networks:
-      - aether-net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      # Required when deploying via docker compose on a swarm node to avoid "tasks." lookup error
-      AGENT_CLUSTER_ADDR: portainer-agent
-    restart: always
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    networks:
+      - aether-net
+    ports:
+      - "9001:9001"
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.hostname == muspelheim
 
 networks:
   aether-net:
