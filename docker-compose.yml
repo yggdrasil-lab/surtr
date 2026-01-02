@@ -9,10 +9,11 @@ services:
       - aether-net
     ports:
       - "9001:9001"
-    environment:
-      # Required when declaring agent on a swarm node via compose to avoid "tasks." lookup
-      AGENT_CLUSTER_ADDR: portainer-agent
-    restart: always
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.platform.os == linux
 
 networks:
   aether-net:
