@@ -9,6 +9,8 @@ services:
       - aether-net
     ports:
       - "9001:9001"
+    labels:
+      - "com.docker.compose.project=${STACK_NAME}"
     deploy:
       mode: global
       placement:
