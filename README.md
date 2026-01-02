@@ -9,6 +9,7 @@ Allows the main Portainer instance to manage this node.
 
 - **Type**: Standalone Docker container.
 - **Ports**: Exposes `9001`.
+- **Environment**: `AGENT_CLUSTER_ADDR=portainer-agent` (Required to prevent invalid Swarm DNS lookups).
 
 ## Prerequisites
 
