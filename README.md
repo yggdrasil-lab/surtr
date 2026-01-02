@@ -5,29 +5,26 @@ This project deploys the Portainer Agent to a specific node (`muspelheim`) in th
 ## Components
 
 ### Portainer Agent (`portainer/agent`)
-Allows the main Portainer instance to manage the resources on the `muspelheim` node and the cluster.
+Allows the main Portainer instance to manage this node.
 
-- **Placement**: Constrained to run only on `node.hostname == muspelheim`.
-- **Mode**: Global (one instance per matching node).
+- **Type**: Standalone Docker container.
 - **Ports**: Exposes `9001`.
 
 ## Prerequisites
 
-- **Swarm**: The target environment must be a Docker Swarm.
-- **Network**: The external overlay network `aether-net` must exist.
-- **Node Label**: The target node must have the hostname `muspelheim`.
+- **Docker**: Docker Engine and Docker Compose (v2) must be installed.
 
 ## Deployment
 
-The deployment is managed via `docker stack deploy`.
+The deployment is managed via `docker compose`.
 
 ```bash
 ./start.sh
 ```
 
 **Command:**
-`docker stack deploy -c docker-compose.yml surtr`
+`docker compose up -d`
 
 ## CI/CD Service
 
-This repository includes a GitHub Action (`.github/workflows/deploy.yml`) configured to run on a self-hosted runner tagged `gaia` (manager node). It triggers on pushes to the default branch.
+This repository includes a GitHub Action (`.github/workflows/deploy.yml`) configured to run on a self-hosted runner tagged `muspelheim`. It triggers on pushes to the default branch.

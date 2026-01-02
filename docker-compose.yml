@@ -9,11 +9,7 @@ services:
       - aether-net
     ports:
       - "9001:9001"
-    deploy:
-      mode: global
-      placement:
-        constraints:
-          - node.hostname == muspelheim
+    restart: always
 
 networks:
   aether-net:

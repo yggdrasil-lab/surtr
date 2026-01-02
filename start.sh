@@ -1,4 +1,7 @@
 #!/bin/bash
 
-# Deploy the stack to the Swarm
-docker stack deploy -c docker-compose.yml surtr
+# Stop and remove existing containers and orphans
+docker compose down --remove-orphans
+
+# Start the stack
+docker compose up -d --remove-orphans
